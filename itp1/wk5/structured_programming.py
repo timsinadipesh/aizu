@@ -12,7 +12,7 @@ for i in range(1, n+1):
     if x % 3 == 0:
         prin = True
     else:
-        # loop until x is greater than 0
+        # loop while x is greater than 0
         while x > 0:
             # last digit is 3
             if x % 10 == 3:
