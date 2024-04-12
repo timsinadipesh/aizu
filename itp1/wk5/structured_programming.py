@@ -1,6 +1,6 @@
 """
-Takes an interget 'n' input from the command line
-Prints all the numbers from 1 to n that are 
+takes an integer 'n' from the command line
+prints all the numbers from 1 to n that are 
 either divisible by 3 or contain the digit 3
 """
 n = int(input())
