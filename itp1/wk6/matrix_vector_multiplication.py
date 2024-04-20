@@ -13,13 +13,9 @@ b = []
 for i in range(m):
     b.append(int(input()))
 
-result = []
 for i in range(n):
     total = 0
     for j in range(m):
         total += a[i][j] * b[j]
-    result.append(total)
-
-for val in result:
-    print(val)
-        
+    print(total)
+      
