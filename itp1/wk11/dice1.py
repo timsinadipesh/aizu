@@ -1,9 +1,9 @@
 """
 rolling dice simulation
 
-reads integers asssigned to each face
+reads numbers asssigned to each face
 and a sequence of commands to roll the dice
-prints the integer on the top face
+prints the number on the top face
 """
 
 class Dice:
@@ -50,7 +50,7 @@ class Dice:
         new_positions[5] = self.positions[1]
         self.positions = new_positions
 
-assigned_ints = list(map(int, input().split()))
+assigned_nums = list(map(int, input().split()))
 commands = input()
 
 dice = Dice()
@@ -61,4 +61,4 @@ for command in commands:
     elif command == 'N': dice.northward()
     elif command == 'S': dice.southward()
 
-print(assigned_ints[dice.positions[0] - 1])
+print(assigned_nums[dice.positions[0] - 1])
