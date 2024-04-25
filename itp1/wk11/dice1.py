@@ -7,53 +7,31 @@ prints the number on the top face
 """
 
 class Dice:
-    def __init__(self):
-        self.positions = [1, 2, 3, 4, 5, 6]
+    def __init__(self, assigned_nums):
+        self.positions = assigned_nums
+
+    def rotate(self, new_positions_idx):
+        new_positions = []
+        for i in range(6):
+            new_positions.append(self.positions[new_positions_idx[i]])
+        return new_positions
 
     def eastward(self):
-        new_positions = [0] * 6
-        new_positions[0] = self.positions[3]
-        new_positions[1] = self.positions[1]
-        new_positions[2] = self.positions[0]
-        new_positions[3] = self.positions[5]
-        new_positions[4] = self.positions[4]
-        new_positions[5] = self.positions[2]
-        self.positions = new_positions
+        self.positions = self.rotate([3, 1, 0, 5, 4, 2])
 
     def westward(self):
-        new_positions = [0] * 6
-        new_positions[0] = self.positions[2]
-        new_positions[1] = self.positions[1]
-        new_positions[2] = self.positions[5]
-        new_positions[3] = self.positions[0]
-        new_positions[4] = self.positions[4]
-        new_positions[5] = self.positions[3]
-        self.positions = new_positions
+        self.positions = self.rotate([2, 1, 5, 0, 4, 3])
 
     def northward(self):
-        new_positions = [0] * 6
-        new_positions[0] = self.positions[1]
-        new_positions[1] = self.positions[5]
-        new_positions[2] = self.positions[2]
-        new_positions[3] = self.positions[3]
-        new_positions[4] = self.positions[0]
-        new_positions[5] = self.positions[4]
-        self.positions = new_positions
+        self.positions = self.rotate([1, 5, 2, 3, 0, 4])
 
     def southward(self):
-        new_positions = [0] * 6
-        new_positions[0] = self.positions[4]
-        new_positions[1] = self.positions[0]
-        new_positions[2] = self.positions[2]
-        new_positions[3] = self.positions[3]
-        new_positions[4] = self.positions[5]
-        new_positions[5] = self.positions[1]
-        self.positions = new_positions
+        self.positions = self.rotate([4, 0, 2, 3, 5, 1])
 
 assigned_nums = list(map(int, input().split()))
 commands = input()
 
-dice = Dice()
+dice = Dice(assigned_nums)
 
 for command in commands:
     if command == 'E': dice.eastward()
@@ -61,4 +39,4 @@ for command in commands:
     elif command == 'N': dice.northward()
     elif command == 'S': dice.southward()
 
-print(assigned_nums[dice.positions[0] - 1])
+print(dice.positions[0])
