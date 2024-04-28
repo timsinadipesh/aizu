@@ -1,3 +1,12 @@
+"""
+reads the 2 dices constructed in the same way as dice1
+determines whether these two dices are identical
+they are identical if all the numbers observed from 
+the six directions are the same
+"""
+
+import sys
+
 class Dice:
     def __init__(self, assigned_nums):
         self.positions = assigned_nums
@@ -44,17 +53,27 @@ class Dice:
             self.turn_in_place()
         return False
 
+    def find_match(self, other, direction):
+        for i in range(3):
+            # match top and front of one dice with the other
+            top1, front1 = other.positions[0], other.positions[1]       
+            top_front_matched = self.find_top_front_position(top1, front1)
+
+            if top_front_matched and other.positions == self.positions:
+                print("Yes")
+                sys.exit(0)
+
+            if direction == "e":
+                other.eastward()
+            elif direction == "n":
+                other.northward()
+
 # read the assigned numbers from the cli and make dices
 dice1_nums = list(map(int, input().split()))
 dice2_nums = list(map(int, input().split()))
 dice1 = Dice(dice1_nums)
 dice2 = Dice(dice2_nums)
+dice2.find_match(dice1, "e")
+dice2.find_match(dice1, "n")
 
-# match top and front of one dice with the other
-top1, front1 = dice1.positions[0], dice1.positions[1]
-match_2_dices = dice2.find_top_front_position(top1, front1)
-
-if match_2_dices and dice1.positions == dice2.positions:
-    print("Yes")
-else:
-    print("No")
+print("No")
