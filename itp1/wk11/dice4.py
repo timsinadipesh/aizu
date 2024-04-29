@@ -1,5 +1,6 @@
 """
-
+reads n dices
+determines whether they are all different
 """
 
 import sys
